@@ -1,0 +1,78 @@
+@import url("./tokens.css");
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    font-family: var(--font-body);
+    color: var(--color-text);
+    background: var(--color-page);
+}
+
+body {
+    min-width: 18rem;
+    max-width: 75rem;
+    min-height: 100vh;
+    margin: 0 auto;
+    background: var(--color-surface);
+
+    & > header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: var(--space-3);
+        padding: var(--space-3) var(--space-4);
+        border-bottom: 0.25rem solid var(--color-accent);
+
+        & h1 {
+            margin: 0;
+            color: var(--color-brand);
+            font-family: var(--font-heading);
+            font-size: clamp(1.75rem, 4vw, 2.5rem);
+        }
+    }
+
+    & nav ul {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--space-2);
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    & nav a {
+        color: var(--color-text);
+        font-weight: 700;
+        text-decoration: none;
+
+        &:hover,
+        &:focus-visible {
+            color: var(--color-brand);
+            text-decoration: underline;
+        }
+    }
+
+    & > footer {
+        padding: var(--space-3) var(--space-4);
+        border-top: 1px solid var(--color-border);
+        color: var(--color-muted);
+        font-size: 0.9rem;
+        text-align: center;
+    }
+}
+
+@media (max-width: 42rem) {
+    body {
+        & > header {
+            align-items: flex-start;
+            flex-direction: column;
+            padding: var(--space-3) var(--space-2);
+        }
+
+        & > footer {
+            padding-inline: var(--space-2);
+        }
+    }
+}

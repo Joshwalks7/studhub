@@ -1,0 +1,23 @@
+:root {
+    --color-page: #f5f1e8;
+    --color-surface: #fffdf8;
+    --color-text: #252525;
+    --color-muted: #6b675f;
+    --color-brand: #d62828;
+    --color-brand-dark: #a91f1f;
+    --color-accent: #f4b942;
+    --color-border: #ded8cc;
+
+    --font-body: Arial, Helvetica, sans-serif;
+    --font-heading: Georgia, "Times New Roman", serif;
+
+    --space-1: 0.5rem;
+    --space-2: 1rem;
+    --space-3: 1.5rem;
+    --space-4: 2rem;
+    --space-5: 3rem;
+
+    --radius-small: 0.5rem;
+    --radius-large: 1rem;
+    --shadow-soft: 0 0.75rem 2rem rgb(37 37 37 / 10%);
+}
