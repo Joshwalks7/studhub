@@ -1,7 +1,7 @@
 import express from "express";
 import path from "path";
 import { fileURLToPath } from "url";
-
+import routes from "./src/controllers/routes.js";
 
 // server configuration
 const __filename = fileURLToPath(import.meta.url);
@@ -21,9 +21,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // test route for starters
-app.get("/", (req, res) => {
-    res.render("home");
-})
+app.use("/", routes);
 /**
  * Start Server
  */
