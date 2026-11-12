@@ -1,0 +1,80 @@
+@import url("./tokens.css");
+
+main {
+    display: block;
+    min-height: auto;
+    padding: var(--space-5) var(--space-4);
+    background: var(--color-surface);
+    font-family: var(--font-body);
+    text-align: left;
+
+    & > h2 {
+        margin: 0;
+        color: var(--color-brand);
+        font-family: var(--font-heading);
+        font-size: clamp(2rem, 5vw, 3rem);
+    }
+
+    & > p {
+        margin: var(--space-1) 0 var(--space-4);
+        color: var(--color-muted);
+        font-size: 1.05rem;
+    }
+}
+
+.products-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+    gap: var(--space-3);
+}
+
+.listing-card {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-large);
+    background: var(--color-surface);
+    box-shadow: var(--shadow-soft);
+    transition: transform 160ms ease, box-shadow 160ms ease;
+
+    &:hover {
+        transform: translateY(-0.25rem);
+        box-shadow: 0 1rem 2.5rem rgb(37 37 37 / 14%);
+    }
+
+    & h3 {
+        margin: 0;
+        padding: var(--space-2) var(--space-2) 0;
+        color: var(--color-text);
+        font-family: var(--font-heading);
+        font-size: 1.25rem;
+    }
+
+    & img {
+        order: -1;
+        width: 100%;
+        aspect-ratio: 4 / 3;
+        object-fit: cover;
+        background: var(--color-page);
+    }
+
+    & p {
+        margin: var(--space-1) var(--space-2);
+        color: var(--color-muted);
+        line-height: 1.5;
+    }
+
+    & p:last-child {
+        margin-top: auto;
+        padding-top: var(--space-1);
+        color: var(--color-brand-dark);
+        font-weight: 700;
+    }
+}
+
+@media (max-width: 42rem) {
+    main {
+        padding: var(--space-4) var(--space-2);
+    }
+}

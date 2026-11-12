@@ -2,7 +2,8 @@ import express from "express";
 import path from "path";
 import { fileURLToPath } from "url";
 import routes from "./src/controllers/routes.js";
-
+import { testConnection } from "./src/models/db.js";
+import assets from "./src/middleware/global.js";
 // server configuration
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -20,11 +21,18 @@ app.set('views', path.join(__dirname, 'src/views'));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-// test route for starters
+// route configuration
+app.use(assets);
 app.use("/", routes);
 /**
  * Start Server
  */
 app.listen(PORT, async () => {
-    console.log(`Server is running on http://127.0.0.1:${PORT}`);
+    try {
+        await testConnection();
+        console.log("Database connection successful");
+        console.log(`Server is running on http://127.0.0.1:${PORT}`);
+    } catch (error) {
+        console.error("Database connection failed:", error.message);
+    }
 });

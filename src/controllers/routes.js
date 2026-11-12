@@ -6,7 +6,15 @@ import { homePage } from "./index.js";
 
 const router = Router();
 
-router.get("/", homePage);
+router.use('/products', (req, res, next) => {
+    res.addStyle('<link rel="stylesheet" href="/css/products.css">');
+    next();
+});
+
+router.get("/", (req, res, next) => {
+    res.addStyle('<link rel="stylesheet" href="/css/home.css">');
+    next();
+}, homePage);
 router.get("/products", productsPage);
 router.get("/cart", cartPage);
 router.get("/orders", ordersPage);

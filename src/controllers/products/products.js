@@ -1,6 +1,11 @@
-const productsPage = (req, res) => {
+import { getAllListings } from "../../models/products/listings.js";
+
+const productsPage = async (req, res) => {
+    const listings = await getAllListings();
+
     res.render("products", {
-        title: "Products"
+        title: "Products",
+        listings: listings
     });
 }
 

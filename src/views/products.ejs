@@ -2,7 +2,18 @@
 
 <main>
     <h2>Products</h2>
-    <p>Browse StudHub products here.</p>
+    <p>Score the latest deal on the StudHub Market</p>
+
+    <section class="products-list">
+        <% listings.forEach(listing => { %>
+            <div class="listing-card">
+                <h3><%= listing.listing_name %></h3>
+                <img src="<%= listing.image_url %>.jpg" alt="<%= listing.listing_name %> image">
+                <p><%= listing.description %></p>
+                <p>Price: $<%= Number(listing.price).toFixed(2) %></p>
+            </div>
+        <% }); %>
+    </section>
 </main>
 
 <%- include("partials/footer") %>
