@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { cartPage } from "./cart/cart.js";
-import { productsPage } from "./products/products.js";
+import { productsPage, listingDetailPage } from "./products/products.js";
 import { ordersPage } from "./orders/orders.js";
 import { homePage } from "./index.js";
 
@@ -16,6 +16,7 @@ router.get("/", (req, res, next) => {
     next();
 }, homePage);
 router.get("/products", productsPage);
+router.get("/products/:listingId", listingDetailPage);
 router.get("/cart", cartPage);
 router.get("/orders", ordersPage);
 

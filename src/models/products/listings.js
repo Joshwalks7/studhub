@@ -23,4 +23,26 @@ const getAllListings = async () => {
     return result.rows;
 };
 
-export { getAllListings };
+const getListingById = async (listingId) => {
+    const query = `
+        SELECT
+            id,
+            seller_id,
+            listing_name,
+            description,
+            price,
+            condition,
+            completion_percent,
+            image_url,
+            status,
+            created_at
+        FROM listings
+        WHERE id = $1
+    `;
+
+    const result = await db.query(query, [listingId]);
+
+    return result.rows[0] || null;
+}
+
+export { getAllListings, getListingById };

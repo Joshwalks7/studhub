@@ -5,14 +5,21 @@
     <p>Score the latest deal on the StudHub Market</p>
 
     <section class="products-list">
-        <% listings.forEach(listing => { %>
-            <div class="listing-card">
-                <h3><%= listing.listing_name %></h3>
-                <img src="<%= listing.image_url %>.jpg" alt="<%= listing.listing_name %> image">
-                <p><%= listing.description %></p>
-                <p>Price: $<%= Number(listing.price).toFixed(2) %></p>
-            </div>
-        <% }); %>
+        <% if (listings.length === 0) { %>
+            <p>No available listings are currenlty posted.</p>
+        <% } else { %>
+            <% listings.forEach(listing => { %>
+                <div class="listing-card">
+                    <h3><%= listing.listing_name %></h3>
+                    <img src="<%= listing.image_url %>" alt="<%= listing.listing_name %> image">
+                    <p><%= listing.description %></p>
+                    <div class="product-card-footer">
+                        <p>Price: $<%= Number(listing.price).toFixed(2) %></p>
+                        <a href="/products/<%= listing.id %>">View Listing</a>
+                    </div>
+                </div>
+            <% }); %>
+        <% } %>
     </section>
 </main>
 
