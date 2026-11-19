@@ -2,7 +2,37 @@
 
 <main>
     <h2>Cart</h2>
-    <p>Purchase StudHub products here.</p>
+    <p>Review the LEGO listings you are interested in purchasing.</p>
+
+    <section class="cart-layout">
+        <div class="cart-items">
+            <h3>Cart Items</h3>
+
+            <div class="cart-empty">
+                <h4>Your cart is empty</h4>
+                <p>Add a listing from the products page to see it here.</p>
+                <a href="/products">Browse Products</a>
+            </div>
+        </div>
+
+        <aside class="cart-summary">
+            <h3>Order Summary</h3>
+
+            <div class="summary-line">
+                <span>Subtotal</span>
+                <span>$0.00</span>
+            </div>
+
+            <div class="summary-line">
+                <span>Estimated total</span>
+                <strong>$0.00</strong>
+            </div>
+
+            <button type="button" disabled>
+                Checkout Coming Soon
+            </button>
+        </aside>
+    </section>
 </main>
 
 <%- include("partials/footer") %>

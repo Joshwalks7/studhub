@@ -10,6 +10,10 @@ router.use('/products', (req, res, next) => {
     res.addStyle('<link rel="stylesheet" href="/css/products.css">');
     next();
 });
+router.use("/cart", (req, res, next) => {
+    res.addStyle('<link rel="stylesheet" href="/css/cart.css">');
+    next();
+})
 
 router.get("/", (req, res, next) => {
     res.addStyle('<link rel="stylesheet" href="/css/home.css">');

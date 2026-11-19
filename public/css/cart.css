@@ -1,0 +1,109 @@
+@import url("./tokens.css");
+
+main {
+    display: block;
+    min-height: auto;
+    padding: var(--space-5) var(--space-4);
+    background: var(--color-surface);
+    font-family: var(--font-body);
+    text-align: left;
+
+    & > h2 {
+        margin: 0;
+        color: var(--color-brand);
+        font-family: var(--font-heading);
+        font-size: clamp(2rem, 5vw, 3rem);
+    }
+
+    & > p {
+        margin: var(--space-1) 0 var(--space-4);
+        color: var(--color-muted);
+        font-size: 1.05rem;
+    }
+}
+
+.cart-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1.5fr) minmax(16rem, 1fr);
+    gap: var(--space-4);
+    align-items: start;
+}
+
+.cart-items,
+.cart-summary {
+    padding: var(--space-3);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-large);
+    background: var(--color-surface);
+    box-shadow: var(--shadow-soft);
+
+    & h3 {
+        margin: 0 0 var(--space-2);
+        font-family: var(--font-heading);
+    }
+}
+
+.cart-empty {
+    padding: var(--space-4) var(--space-2);
+    border: 1px dashed var(--color-border);
+    border-radius: var(--radius-small);
+    background: var(--color-page);
+    text-align: center;
+
+    & h4 {
+        margin: 0 0 var(--space-1);
+        font-size: 1.2rem;
+    }
+
+    & p {
+        margin: 0 0 var(--space-2);
+        color: var(--color-muted);
+    }
+
+    & a {
+        color: var(--color-brand-dark);
+        font-weight: 700;
+    }
+}
+
+.cart-summary {
+    & h3 {
+        color: var(--color-brand);
+    }
+
+    & button {
+        width: 100%;
+        margin-top: var(--space-3);
+        padding: var(--space-2);
+        border: 0;
+        border-radius: var(--radius-small);
+        background: var(--color-border);
+        color: var(--color-muted);
+        cursor: not-allowed;
+        font: inherit;
+        font-weight: 700;
+    }
+}
+
+.summary-line {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--space-2);
+    padding: var(--space-1) 0;
+    border-bottom: 1px solid var(--color-border);
+
+    &:last-of-type {
+        border-bottom: 0;
+        color: var(--color-brand-dark);
+    }
+}
+
+@media (max-width: 42rem) {
+    main {
+        padding: var(--space-4) var(--space-2);
+    }
+
+    .cart-layout {
+        grid-template-columns: 1fr;
+    }
+}
