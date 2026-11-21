@@ -1,20 +1,26 @@
 <%- include("../partials/header") %>
 
 <main>
-    <h2><%= listing.listing_name %></h2>
-    <section id="listing-details">
-        <img src="<%= listing.image_url %>" alt="<%=listing.listing_name %> image">
-        <div>
-            <p><%= listing.description %></p>
-            <p>Price: $<%= Number(listing.price).toFixed(2) %></p>
-            <p>Condition: <%= listing.condition %></p>
-            <p>Completion: <%= listing.completion_percent %>%</p>
-            <p>Status: <%= listing.status %></p>
-            <label for="quantity">Quantity</label>
-            <input id="quantity" type="number" min="1" value="1">
-            <button type="button">Add to cart</button>
-        </div>
-    </section>
+  <h2><%= listing.listing_name %></h2>
+  <section id="listing-details">
+    <img
+      src="<%= listing.image_url %>"
+      alt="<%=listing.listing_name %> image"
+    />
+    <div>
+      <p><%= listing.description %></p>
+      <p>Price: $<%= Number(listing.price).toFixed(2) %></p>
+      <p>Condition: <%= listing.condition %></p>
+      <p>Completion: <%= listing.completion_percent %>%</p>
+      <p>Status: <%= listing.status %></p>
+      <form method="POST" action="/cart">
+        <input type="hidden" name="listingId" value="<%= listing.id %>" />
+        <label for="quantity">Quantity</label>
+        <input id="quantity" type="number" name="quantity" min="1" value="1" />
+        <button type="submit">Add to cart</button>
+      </form>
+    </div>
+  </section>
 </main>
 
 <%- include("../partials/footer") %>

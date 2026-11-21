@@ -4,6 +4,10 @@ import { fileURLToPath } from "url";
 import routes from "./src/controllers/routes.js";
 import { testConnection } from "./src/models/db.js";
 import assets from "./src/middleware/global.js";
+import session from 'express-session';
+import connectPgSimple from 'connect-pg-simple';
+import { startSessionCleanup } from './src/utils/session-cleanup.js';
+import db from "./src/models/db.js";
 // server configuration
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -12,6 +16,28 @@ const PORT = process.env.PORT || 3000;
 
 // setup express server
 const app = express();
+// Initialize PostgreSQL session store
+const pgSession = connectPgSimple(session);
+
+// Configure session middleware
+app.use(session({
+    store: new pgSession({
+        pool: db,
+        tableName: 'session',
+        createTableIfMissing: true
+    }),
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+        secure: NODE_ENV.includes('dev') !== true,
+        httpOnly: true,
+        maxAge: 24 * 60 * 60 * 1000
+    }
+}));
+
+// Start automatic session cleanup
+startSessionCleanup();
 
 // configure express
 app.use(express.static(path.join(__dirname, 'public')));
