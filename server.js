@@ -3,6 +3,7 @@ import path from "path";
 import { fileURLToPath } from "url";
 import routes from "./src/controllers/routes.js";
 import { testConnection } from "./src/models/db.js";
+import { setupDatabase } from "./src/models/setup.js";
 import assets from "./src/middleware/global.js";
 import session from 'express-session';
 import connectPgSimple from 'connect-pg-simple';
@@ -50,15 +51,19 @@ app.use(express.json());
 // route configuration
 app.use(assets);
 app.use("/", routes);
-/**
- * Start Server
- */
-app.listen(PORT, async () => {
+const startServer = async () => {
     try {
+        await setupDatabase();
         await testConnection();
         console.log("Database connection successful");
-        console.log(`Server is running on http://127.0.0.1:${PORT}`);
+
+        app.listen(PORT, () => {
+            console.log(`Server is running on http://127.0.0.1:${PORT}`);
+        });
     } catch (error) {
         console.error("Database connection failed:", error.message);
+        process.exitCode = 1;
     }
-});
+};
+
+startServer();

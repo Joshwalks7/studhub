@@ -66,6 +66,42 @@ main {
     }
 }
 
+.cart-item {
+    display: grid;
+    grid-template-columns: 5rem minmax(0, 1fr);
+    gap: var(--space-2);
+    align-items: start;
+    padding: var(--space-2) 0;
+    border-bottom: 1px solid var(--color-border);
+
+    &:last-child {
+        border-bottom: 0;
+    }
+
+    & > img {
+        width: 5rem;
+        height: 5rem;
+        border-radius: var(--radius-small);
+        object-fit: cover;
+        background: var(--color-page);
+    }
+}
+
+.cart-item-details {
+    min-width: 0;
+
+    & h4 {
+        margin: 0 0 var(--space-1);
+        font-family: var(--font-heading);
+    }
+
+    & p {
+        margin: 0.2rem 0;
+        color: var(--color-muted);
+        font-size: 0.95rem;
+    }
+}
+
 .cart-summary {
     & h3 {
         color: var(--color-brand);

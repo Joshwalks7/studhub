@@ -5,15 +5,27 @@
     <p>Review the LEGO listings you are interested in purchasing.</p>
 
     <section class="cart-layout">
-        <pre><%= JSON.stringify(cart, null, 2) %></pre>
         <div class="cart-items">
             <h3>Cart Items</h3>
-
-            <div class="cart-empty">
-                <h4>Your cart is empty</h4>
-                <p>Add a listing from the products page to see it here.</p>
-                <a href="/products">Browse Products</a>
-            </div>
+            <% if(cart.length == 0) { %>
+                <div class="cart-empty">
+                    <h4>Your cart is empty</h4>
+                    <p>Add a listing from the products page to see it here.</p>
+                    <a href="/products">Browse Products</a>
+                </div>
+            <% } else { %>
+                <% cart.forEach(item => { %>
+                    <article class="cart-item">
+                        <img src="<%= item.listing.image_url %>" alt="<%= item.listing.listing_name %> image">
+                        <div class="cart-item-details">
+                            <h4><%= item.listing.listing_name %></h4>
+                            <p>Quantity: <%= item.quantity %></p>
+                            <p>Price: $<%= Number(item.listing.price).toFixed(2) %></p>
+                            <p>Item subtotal: $<%= Number(item.itemSubtotal).toFixed(2) %></p>
+                        </div>
+                    </article>
+                <% }); %>
+            <% } %>
         </div>
 
         <aside class="cart-summary">
@@ -21,12 +33,22 @@
 
             <div class="summary-line">
                 <span>Subtotal</span>
-                <span>$0.00</span>
+                <span>$<%= Number(subtotal).toFixed(2) %></span>
+            </div>
+
+            <div class="summary-line">
+                <span>Sales Tax</span>
+                <span>$<%= Number(salesTax).toFixed(2) %></span>
+            </div>
+
+            <div class="summary-line">
+                <span>Shipping</span>
+                <span>$<%= Number(shipping).toFixed(2) %></span>
             </div>
 
             <div class="summary-line">
                 <span>Estimated total</span>
-                <strong>$0.00</strong>
+                <strong>$<%= Number(total).toFixed(2) %></strong>
             </div>
 
             <button type="button" disabled>

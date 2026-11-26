@@ -1,13 +1,23 @@
-import { getListingById } from "../../models/products/listings.js";
+import { addItemToCart, getCartDetails } from "../../models/cart/cart.js";
 
-const cartPage = (req, res) => {
-    res.render("cart", {
-        title: "Cart",
-        cart: req.session.cart || []
-    });
-}
+const cartPage = async (req, res, next) => {
+    try {
+        const cartDetails = await getCartDetails(req.session);
 
-const addToCart = async (req, res) => {
+        res.render("cart", {
+            title: "Cart",
+            cart: cartDetails.cart,
+            subtotal: cartDetails.subtotal,
+            salesTax: cartDetails.salesTax,
+            shipping: cartDetails.shipping,
+            total: cartDetails.total
+        });
+    } catch (error) {
+        return next(error);
+    }
+};
+
+const addToCart = async (req, res, next) => {
     const listingId = Number.parseInt(req.body.listingId, 10);
     const quantity = Number.parseInt(req.body.quantity, 10);
 
@@ -15,28 +25,17 @@ const addToCart = async (req, res) => {
         return res.status(400).send("Invalid listing or quantity");
     }
 
-    const listing = await getListingById(listingId);
+    try {
+        const cart = await addItemToCart(req.session, listingId, quantity);
 
-    if (!listing || listing.status !== "available") {
-        return res.status(404).send("Listing is not available");
+        if (!cart) {
+            return res.status(404).send("Listing is not available");
+        }
+
+        return res.redirect("/cart");
+    } catch (error) {
+        return next(error);
     }
-
-    if (!req.session.cart) {
-        req.session.cart = [];
-    }
-
-    const existingItem = req.session.cart.find(item => item.listingId === listingId);
-    
-    if (existingItem) {
-        existingItem.quantity += quantity;
-    } else {
-        req.session.cart.push({
-            listingId,
-            quantity
-        });
-    }
-
-    res.redirect("/cart");
-}
+};
 
 export { cartPage, addToCart };
