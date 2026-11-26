@@ -3,6 +3,28 @@
 <main>
     <h2>Orders</h2>
     <p>Track purchases here.</p>
+    <% if(orders.length === 0) { %>
+        <p>You have not placed any orders yet.</p>
+    <% } else { %>
+        <section class="orders-list">
+            <% orders.forEach(order => { %>
+                <article class="order-card">
+                    <div class="order-image">
+                        <img src="<%= order.image_url %>" alt="<%=order.listing_name%>">
+                    </div>
+                    <div class="order-details">
+                        <h3><%= order.listing_name %></h3>
+                        <p>Order #<%= order.order_id %></p>
+                        <p>Quantity: <%= order.quantity %></p>
+                        <p>Item total: $<%= order.item_total %></p>
+                        <p>Order status: <%= order.order_status %></p>
+                        <p>Fulfillment status: <%= order.fulfillment_status %></p>
+                        <p>Ordered: <%= new Date(order.created_at).toLocaleDateString() %></p>
+                    </div>
+                </article>
+            <% }) %>
+        </section>
+    <% } %>
 </main>
 
 <%- include("partials/footer") %>

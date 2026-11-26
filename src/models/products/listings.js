@@ -31,6 +31,7 @@ const getListingById = async (listingId) => {
             listing_name,
             description,
             price,
+            quantity_available,
             condition,
             completion_percent,
             image_url,

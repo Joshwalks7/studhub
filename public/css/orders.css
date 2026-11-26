@@ -1,0 +1,86 @@
+@import url("./tokens.css");
+
+main {
+    display: block;
+    min-height: auto;
+    padding: var(--space-5) var(--space-4);
+    background: var(--color-surface);
+    font-family: var(--font-body);
+    text-align: left;
+
+    & > h2 {
+        margin: 0;
+        color: var(--color-brand);
+        font-family: var(--font-heading);
+        font-size: clamp(2rem, 5vw, 3rem);
+    }
+
+    & > p {
+        margin: var(--space-1) 0 var(--space-4);
+        color: var(--color-muted);
+        font-size: 1.05rem;
+    }
+}
+
+.orders-list {
+    display: grid;
+    gap: var(--space-3);
+    max-width: 50rem;
+}
+
+.order-card {
+    display: grid;
+    grid-template-columns: 7rem minmax(0, 1fr);
+    gap: var(--space-3);
+    align-items: start;
+    padding: var(--space-2);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-large);
+    background: var(--color-surface);
+    box-shadow: var(--shadow-soft);
+
+    & img {
+        width: 7rem;
+        height: 7rem;
+        border-radius: var(--radius-small);
+        object-fit: cover;
+        background: var(--color-page);
+    }
+}
+
+.order-details {
+    min-width: 0;
+
+    & h3 {
+        margin: 0 0 var(--space-1);
+        color: var(--color-text);
+        font-family: var(--font-heading);
+    }
+
+    & p {
+        margin: 0.25rem 0;
+        color: var(--color-muted);
+        font-size: 0.95rem;
+    }
+
+    & p:last-child {
+        color: var(--color-brand-dark);
+        font-weight: 700;
+    }
+}
+
+@media (max-width: 42rem) {
+    main {
+        padding: var(--space-4) var(--space-2);
+    }
+
+    .order-card {
+        grid-template-columns: 5rem minmax(0, 1fr);
+        gap: var(--space-2);
+
+        & img {
+            width: 5rem;
+            height: 5rem;
+        }
+    }
+}

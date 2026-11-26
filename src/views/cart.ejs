@@ -50,10 +50,11 @@
                 <span>Estimated total</span>
                 <strong>$<%= Number(total).toFixed(2) %></strong>
             </div>
-
-            <button type="button" disabled>
-                Checkout Coming Soon
-            </button>
+            <form method="POST" action="/orders">
+                <button type="submit">
+                    Checkout
+                </button>
+            </form>
         </aside>
     </section>
 </main>

@@ -113,11 +113,16 @@ main {
         padding: var(--space-2);
         border: 0;
         border-radius: var(--radius-small);
-        background: var(--color-border);
-        color: var(--color-muted);
-        cursor: not-allowed;
+        background: var(--color-brand);
+        color: var(--color-surface);
+        cursor: pointer;
         font: inherit;
         font-weight: 700;
+
+        &:hover,
+        &:focus-visible {
+            background: var(--color-brand-dark);
+        }
     }
 }
 
